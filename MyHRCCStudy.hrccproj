@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ec97ce08-c83a-46ab-aca4-0aa323c2c969}</ProjectGuid>
+    <ProjectType>HRCC</ProjectType>
+    <ChipType>ES7P0693FHTF</ChipType>
+    <ChipConfig>AA5575678E98FFFF609FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</ChipConfig>
+    <TargetPath>debug\</TargetPath>
+    <HiccInclude>
+    </HiccInclude>
+    <HiccError>False</HiccError>
+    <PredefinitionMacro>
+    </PredefinitionMacro>
+    <FDD>True</FDD>
+    <LFUNC>True</LFUNC>
+    <USPTR>True</USPTR>
+    <LPTR>True</LPTR>
+    <FA>True</FA>
+    <HS>True</HS>
+    <HrccError>False</HrccError>
+    <HrccOptimizationSelect>O0</HrccOptimizationSelect>
+    <HrccExtraOption>
+    </HrccExtraOption>
+    <BAS>True</BAS>
+    <ARGU>True</ARGU>
+    <SD>True</SD>
+    <HrcoError>False</HrcoError>
+    <HrcoExtraOption>
+    </HrcoExtraOption>
+    <HasmInclude>
+    </HasmInclude>
+    <HasmError>False</HasmError>
+    <HasmList>False</HasmList>
+    <OBJ>True</OBJ>
+    <HasmMap>False</HasmMap>
+    <CS>True</CS>
+    <MP>False</MP>
+    <OutputMessageType>Errors only</OutputMessageType>
+    <RadixFormat>hex</RadixFormat>
+    <NT>True</NT>
+    <OL>True</OL>
+    <HlinkError>False</HlinkError>
+    <HlinkMap>False</HlinkMap>
+    <HlinkList>False</HlinkList>
+    <HlinkExtraOption>
+    </HlinkExtraOption>
+    <AssemblyName>MyHRCCStudy</AssemblyName>
+    <Name>MyHRCCStudy</Name>
+    <RootNamespace>MyHRCCStudy</RootNamespace>
+    <ToolChain>HRCC v1.2.0.124</ToolChain>
+    <Crystal>8</Crystal>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>debug\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="main.c">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="uart.c">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="uart.h">
+      <SubType>Content</SubType>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(registry:HKEY_CURRENT_USER\Software\ICHAIER\HRIDE4.0\1.0_Config\MSBuild\SafeImports@HRCC)" />
+</Project>
