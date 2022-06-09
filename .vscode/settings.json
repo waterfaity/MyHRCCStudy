@@ -1,5 +1,14 @@
 {
     "esls.clang.extraArgs": [
+        "-I\"C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE\"",
+        "-D__HAIER_ES7P0693__",
         "  "
-    ]
+    ],
+    "esls.fileList": [
+        "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\main.c",
+        "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\uart.c"
+    ],
+    "esls.compile.includePath": "C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE",
+    "esls.compile.macro": "__HAIER_ES7P0693__",
+    "esls.compile.extraArgs": ""
 }

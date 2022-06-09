@@ -4,7 +4,8 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "C:/Program Files (x86)/HRCC Tools/HRCC v1.2.0.124/tools/INCLUDE/**"
+                "C:/Program Files (x86)/HRCC Tools/HRCC v1.2.0.124/tools/INCLUDE/**",
+                "C:/Program Files (x86)/HRCC Tools/HRCC v1.2.0.124/tools/INCLUDE"
             ],
             "defines": [
                 "_DEBUG",

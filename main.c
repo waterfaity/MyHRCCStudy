@@ -15,7 +15,6 @@
 
 void main()
 {
-
     init_uart();
     uart_send("Hello World !");
 
