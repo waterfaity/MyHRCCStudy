@@ -11,7 +11,6 @@
  */
 #include "uart.h"
 #include <HIC.h>
-#include <stdlib.h>
 
 //接收缓存
 unsigned char rxbuf;
