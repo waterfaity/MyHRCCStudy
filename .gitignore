@@ -1,3 +1,2 @@
-./debug/
-./vscode/esls-cache/
-./.vscode/esls-cache/
+debug/
+.vscode/esls-cache/
