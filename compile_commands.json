@@ -1,12 +1,12 @@
 [
     {
         "directory": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy",
-        "command": "clang   -Dsbit=char    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\main.c\"",
-        "file": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\main.c"
+        "command": "clang   -Dsbit=char    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\uart.c\"",
+        "file": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\uart.c"
     },
     {
         "directory": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy",
-        "command": "clang   -Dsbit=char    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\uart.c\"",
-        "file": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\uart.c"
+        "command": "clang   -Dsbit=char    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\main.c\"",
+        "file": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\main.c"
     }
 ]
