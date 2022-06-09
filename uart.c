@@ -12,15 +12,15 @@
 #include "uart.h"
 #include <HIC.h>
 
-//æŽ¥æ”¶ç¼“å­˜
+//½ÓÊÕ»º´æ
 unsigned char rxbuf;
 
 void init_gpio()
 {
-    // PA/B/C ç«¯å£ä¸ºå¤ç”¨ç«¯å£ (æ¨¡æ‹Ÿè¾“å…¥+æ•°å­—è¾“å…¥/è¾“å‡º)
-    //  ANSL å’Œ ANSH å€¼å¯¹åº”å¦‚ä¸‹
-    //  0 : æ¨¡æ‹Ÿè¾“å…¥
-    //  1 : æ•°å­—è¾“å…¥/è¾“å‡º
+    // PA/B/C ¶Ë¿ÚÎª¸´ÓÃ¶Ë¿Ú (Ä£ÄâÊäÈë+Êý×ÖÊäÈë/Êä³ö)
+    //  ANSL ºÍ ANSH Öµ¶ÔÓ¦ÈçÏÂ
+    //  0 : Ä£ÄâÊäÈë
+    //  1 : Êý×ÖÊäÈë/Êä³ö
 
     // ANSL7 : PA7
     // ANSL6 : PB7
@@ -35,18 +35,18 @@ void init_gpio()
     // ANSH3 : PB1
     // ANSH2 : PA6
     // ANSH1 : PB4
-    //å…¶å®ƒä¿ç•™æœªç”¨
-    ANSL = 0xFF; //é€‰æ‹©å¯¹åº”ç«¯å£ä¸ºæ•°å­—IOåŠŸèƒ½
-    ANSH = 0xFF; //é€‰æ‹©å¯¹åº”ç«¯å£ä¸ºæ•°å­—IOåŠŸèƒ½
+    //ÆäËü±£ÁôÎ´ÓÃ
+    ANSL = 0xFF; //Ñ¡Ôñ¶ÔÓ¦¶Ë¿ÚÎªÊý×ÖIO¹¦ÄÜ
+    ANSH = 0xFF; //Ñ¡Ôñ¶ÔÓ¦¶Ë¿ÚÎªÊý×ÖIO¹¦ÄÜ
 
-    //è¾“å…¥è¾“å‡ºæŽ§åˆ¶å¯„å­˜å™¨
-    // 0: è¾“å‡º
-    // 1: è¾“å…¥
+    //ÊäÈëÊä³ö¿ØÖÆ¼Ä´æÆ÷
+    // 0: Êä³ö
+    // 1: ÊäÈë
     PAT = 0x00;
     PBT = 0x00;
     PCT = 0x00;
 
-    //ç”µå¹³çŠ¶æ€
+    //µçÆ½×´Ì¬
     PA = 0x00;
     PB = 0x00;
     PC = 0x00;
@@ -54,114 +54,114 @@ void init_gpio()
 
 void init_uart(void)
 {
-    //  UART1SELï¼šUART1 æŽ¥æ”¶ã€å‘é€ç«¯å£é€‰æ‹©ä½
-    //  0ï¼šTX1 å¤ç”¨ PB5ï¼ŒRX1 å¤ç”¨ PB6
-    //  1ï¼šTX1 å¤ç”¨ PC1ï¼ŒRX1 å¤ç”¨ PA5
+    //  UART1SEL£ºUART1 ½ÓÊÕ¡¢·¢ËÍ¶Ë¿ÚÑ¡ÔñÎ»
+    //  0£ºTX1 ¸´ÓÃ PB5£¬RX1 ¸´ÓÃ PB6
+    //  1£ºTX1 ¸´ÓÃ PC1£¬RX1 ¸´ÓÃ PA5
     UART1SEL = 1;
-    PCT1 = 0; //ç«¯å£è®¾ç½®ä¸ºè¾“å‡º
-    PAT5 = 1; //ç«¯å£è®¾ç½®ä¸ºè¾“å…¥
+    PCT1 = 0; //¶Ë¿ÚÉèÖÃÎªÊä³ö
+    PAT5 = 1; //¶Ë¿ÚÉèÖÃÎªÊäÈë
 
-    //å‘é€å™¨æ•°æ®æ ¼å¼é€‰æ‹©ä½
-    // 0: 8ä½æ•°æ®æ ¼å¼
-    // 1: 9ä½æ•°æ®æ ¼å¼
+    //·¢ËÍÆ÷Êý¾Ý¸ñÊ½Ñ¡ÔñÎ»
+    // 0: 8Î»Êý¾Ý¸ñÊ½
+    // 1: 9Î»Êý¾Ý¸ñÊ½
     RX1LEN = 0;
     TX1LEN = 0;
 
-    //æ³¢ç‰¹çŽ‡è®¾ç½®
-    // BRGH1 é«˜é€Ÿ/ä½Žé€Ÿé€‰æ‹©
-    // 0 : ä½Žé€Ÿ Fosc/(64x(BRnR<7:0>+1))
-    // 1 : é«˜é€Ÿ
-    // BJT1EN å°æ•°æ³¢ç‰¹çŽ‡åŽ»æŠ–ä½¿èƒ½
-    // 0 : ç¦æ­¢
-    // 1 : ä½¿èƒ½
-    //å…¬å¼è®¡ç®—å¦‚ä¸‹: Fosc = 16MHZ
-    //      æ³¢ç‰¹çŽ‡              è®¡ç®—å…¬å¼                    BRGHn   BJTnEN
-    //      ä½Žé€Ÿæ¨¡å¼            Fosc/(64x(BRnR<7:0>+1))     0       0
-    //      ä½Žé€Ÿæ¨¡å¼            Fosc/(64xBRRDIV)            0       1
-    //      é«˜é€Ÿæ¨¡å¼            Fosc/(16x(BRnR<7:0>+1))     1       0
-    //      é«˜é€Ÿæ¨¡å¼            Fosc/(16xBRRDIV)            1       1
+    //²¨ÌØÂÊÉèÖÃ
+    // BRGH1 ¸ßËÙ/µÍËÙÑ¡Ôñ
+    // 0 : µÍËÙ Fosc/(64x(BRnR<7:0>+1))
+    // 1 : ¸ßËÙ
+    // BJT1EN Ð¡Êý²¨ÌØÂÊÈ¥¶¶Ê¹ÄÜ
+    // 0 : ½ûÖ¹
+    // 1 : Ê¹ÄÜ
+    //¹«Ê½¼ÆËãÈçÏÂ: Fosc = 16MHZ
+    //      ²¨ÌØÂÊ              ¼ÆËã¹«Ê½                    BRGHn   BJTnEN
+    //      µÍËÙÄ£Ê½            Fosc/(64x(BRnR<7:0>+1))     0       0
+    //      µÍËÙÄ£Ê½            Fosc/(64xBRRDIV)            0       1
+    //      ¸ßËÙÄ£Ê½            Fosc/(16x(BRnR<7:0>+1))     1       0
+    //      ¸ßËÙÄ£Ê½            Fosc/(16xBRRDIV)            1       1
     BRGH1 = 0;
     BJT1EN = 0;
 
-    //é¢‘çŽ‡è®¾å€¼
-    BR1R = 0x19; //æ³¢ç‰¹çŽ‡ = 16MHZ / ( 64 x ( 25 + 1 )) â‰ˆ 9600bps
+    //ÆµÂÊÉèÖµ
+    BR1R = 0x19; //²¨ÌØÂÊ = 16MHZ / ( 64 x ( 25 + 1 )) ¡Ö 9600bps
 
-    //æŽ¥æ”¶ä¸­æ–­ä½¿èƒ½
+    //½ÓÊÕÖÐ¶ÏÊ¹ÄÜ
     RX1IE = 1;
-    //æ€»ä¸­æ–­
+    //×ÜÖÐ¶Ï
     GIE = 1;
 
-    //å‘é€/æŽ¥æ”¶ä½¿èƒ½
+    //·¢ËÍ/½ÓÊÕÊ¹ÄÜ
     RX1EN = 1;
     TX1EN = 1;
 }
 
 void init_uart_2(void)
 {
-    //  UART1SELï¼šUART1 æŽ¥æ”¶ã€å‘é€ç«¯å£é€‰æ‹©ä½
-    //  0ï¼šTX1 å¤ç”¨ PB5ï¼ŒRX1 å¤ç”¨ PB6
-    //  1ï¼šTX1 å¤ç”¨ PC1ï¼ŒRX1 å¤ç”¨ PA5
+    //  UART1SEL£ºUART1 ½ÓÊÕ¡¢·¢ËÍ¶Ë¿ÚÑ¡ÔñÎ»
+    //  0£ºTX1 ¸´ÓÃ PB5£¬RX1 ¸´ÓÃ PB6
+    //  1£ºTX1 ¸´ÓÃ PC1£¬RX1 ¸´ÓÃ PA5
     UART1SEL = 1;
-    PCT1 = 0; //ç«¯å£è®¾ç½®ä¸ºè¾“å‡º
-    PAT5 = 1; //ç«¯å£è®¾ç½®ä¸ºè¾“å…¥
+    PCT1 = 0; //¶Ë¿ÚÉèÖÃÎªÊä³ö
+    PAT5 = 1; //¶Ë¿ÚÉèÖÃÎªÊäÈë
 
-    //å‘é€å™¨æ•°æ®æ ¼å¼é€‰æ‹©ä½
-    // 0: 8ä½æ•°æ®æ ¼å¼
-    // 1: 9ä½æ•°æ®æ ¼å¼
+    //·¢ËÍÆ÷Êý¾Ý¸ñÊ½Ñ¡ÔñÎ»
+    // 0: 8Î»Êý¾Ý¸ñÊ½
+    // 1: 9Î»Êý¾Ý¸ñÊ½
     RX1LEN = 0;
     TX1LEN = 0;
 
-    //æ³¢ç‰¹çŽ‡è®¾ç½®
-    // BRGH1 é«˜é€Ÿ/ä½Žé€Ÿé€‰æ‹©
-    // 0 : ä½Žé€Ÿ Fosc/(64x(BRnR<7:0>+1))
-    // 1 : é«˜é€Ÿ
-    // BJT1EN å°æ•°æ³¢ç‰¹çŽ‡åŽ»æŠ–ä½¿èƒ½
-    // 0 : ç¦æ­¢
-    // 1 : ä½¿èƒ½
-    //å…¬å¼è®¡ç®—å¦‚ä¸‹: Fosc = 16MHZ
-    //      æ³¢ç‰¹çŽ‡              è®¡ç®—å…¬å¼                    BRGHn   BJTnEN
-    //      ä½Žé€Ÿæ¨¡å¼            Fosc/(64x(BRnR<7:0>+1))     0       0
-    //      ä½Žé€Ÿæ¨¡å¼            Fosc/(64xBRRDIV)            0       1
-    //      é«˜é€Ÿæ¨¡å¼            Fosc/(16x(BRnR<7:0>+1))     1       0
-    //      é«˜é€Ÿæ¨¡å¼            Fosc/(16xBRRDIV)            1       1
+    //²¨ÌØÂÊÉèÖÃ
+    // BRGH1 ¸ßËÙ/µÍËÙÑ¡Ôñ
+    // 0 : µÍËÙ Fosc/(64x(BRnR<7:0>+1))
+    // 1 : ¸ßËÙ
+    // BJT1EN Ð¡Êý²¨ÌØÂÊÈ¥¶¶Ê¹ÄÜ
+    // 0 : ½ûÖ¹
+    // 1 : Ê¹ÄÜ
+    //¹«Ê½¼ÆËãÈçÏÂ: Fosc = 16MHZ
+    //      ²¨ÌØÂÊ              ¼ÆËã¹«Ê½                    BRGHn   BJTnEN
+    //      µÍËÙÄ£Ê½            Fosc/(64x(BRnR<7:0>+1))     0       0
+    //      µÍËÙÄ£Ê½            Fosc/(64xBRRDIV)            0       1
+    //      ¸ßËÙÄ£Ê½            Fosc/(16x(BRnR<7:0>+1))     1       0
+    //      ¸ßËÙÄ£Ê½            Fosc/(16xBRRDIV)            1       1
     BRGH1 = 0;
     BJT1EN = 0;
 
-    //é¢‘çŽ‡è®¾å€¼
-    BR1R = 0x19; //æ³¢ç‰¹çŽ‡ = 16MHZ / ( 64 x ( 25 + 1 )) â‰ˆ 9600bps
+    //ÆµÂÊÉèÖµ
+    BR1R = 0x19; //²¨ÌØÂÊ = 16MHZ / ( 64 x ( 25 + 1 )) ¡Ö 9600bps
 
-    //æŽ¥æ”¶ä¸­æ–­ä½¿èƒ½
+    //½ÓÊÕÖÐ¶ÏÊ¹ÄÜ
     RX1IE = 1;
 
-    //æ€»ä¸­æ–­
+    //×ÜÖÐ¶Ï
     GIE = 1;
 
-    // INTVEN0 ä¸­æ–­æ¨¡å¼é€‰æ‹©ä½
-    // 0ï¼šé»˜è®¤ä¸­æ–­æ¨¡å¼
-    // 1ï¼šå‘é‡ä¸­æ–­æ¨¡å¼ï¼ˆèŠ¯ç‰‡é…ç½®å­— INTVEN1ï¼ˆCFG_WD0<11>ï¼‰å¿…é¡»ä¸º 1ï¼‰
+    // INTVEN0 ÖÐ¶ÏÄ£Ê½Ñ¡ÔñÎ»
+    // 0£ºÄ¬ÈÏÖÐ¶ÏÄ£Ê½
+    // 1£ºÏòÁ¿ÖÐ¶ÏÄ£Ê½£¨Ð¾Æ¬ÅäÖÃ×Ö INTVEN1£¨CFG_WD0<11>£©±ØÐëÎª 1£©
     INTVEN0 = 1;
 
-    //ä¸­æ–­å‘é‡è¡¨é€‰æ‹©ä½
+    //ÖÐ¶ÏÏòÁ¿±íÑ¡ÔñÎ»
     INTV1 = 1;
     INTV0 = 1;
 
-    //å‘é€/æŽ¥æ”¶ä½¿èƒ½
+    //·¢ËÍ/½ÓÊÕÊ¹ÄÜ
     RX1EN = 1;
     TX1EN = 1;
 }
 
 /**
- * UART ä¸­æ–­
+ * UART ÖÐ¶Ï
  * @brief
  *
  */
 void isr(void) interrupt
 {
-    //æŽ¥æ”¶1ä¸­æ–­æ ‡å¿—ä½=1 , æŽ¥æ”¶1ä¸­æ–­ä½¿èƒ½=1
+    //½ÓÊÕ1ÖÐ¶Ï±êÖ¾Î»=1 , ½ÓÊÕ1ÖÐ¶ÏÊ¹ÄÜ=1
     if (RX1IE == 1 && RX1IF == 1)
     {
         rxbuf = RX1B;
-        // ç©ºæ ‡å¿—ä½ TRMT1 = 1æ—¶ ç©ºé—²
+        // ¿Õ±êÖ¾Î» TRMT1 = 1Ê± ¿ÕÏÐ
         while (!TRMT1)
             ;
         TX1B = rxbuf;
@@ -169,7 +169,7 @@ void isr(void) interrupt
 }
 
 /**
- * UART ä¸­æ–­
+ * UART ÖÐ¶Ï
  * 0x18
  * @brief
  *

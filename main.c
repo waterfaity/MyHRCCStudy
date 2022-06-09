@@ -10,11 +10,12 @@
  *
  */
 
-#include <HIC.h>
+#include <hic.h>
 #include "uart.h"
 
 void main()
 {
+
     init_uart();
     uart_send("Hello World !");
 
