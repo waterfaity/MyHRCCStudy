@@ -6,9 +6,25 @@
     ],
     "esls.fileList": [
         "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\main.c",
-        "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\uart.c"
+        "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\uart.c",
+        "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\adc_ntc.c",
+        "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\interrupt_default.c",
+        "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\interrupt_key.c",
+        "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\interrupt_pin.c",
+        "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\led.c"
     ],
     "esls.compile.includePath": "C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE",
     "esls.compile.macro": "__HAIER_ES7P0693__",
-    "esls.compile.extraArgs": ""
+    "esls.compile.extraArgs": "",
+    "files.associations": {
+        "adc_ntc.h": "c",
+        "interrupt_key.h": "c",
+        "uart.h": "c",
+        "hic.h": "c",
+        "hiint.h": "c",
+        "hr6p58l.h": "c"
+    },
+    "debug.allowBreakpointsEverywhere": true,
+    "files.autoGuessEncoding": true,
+    "esls.essemi.is8BitMachine": true
 }

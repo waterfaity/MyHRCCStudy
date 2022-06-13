@@ -1,6 +1,31 @@
 [
     {
         "directory": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy",
+        "command": "clang -I\"C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE\" -D__HAIER_ES7P0693__ -Dsbit=char    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\led.c\"",
+        "file": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\led.c"
+    },
+    {
+        "directory": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy",
+        "command": "clang -I\"C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE\" -D__HAIER_ES7P0693__ -Dsbit=char    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\interrupt_pin.c\"",
+        "file": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\interrupt_pin.c"
+    },
+    {
+        "directory": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy",
+        "command": "clang -I\"C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE\" -D__HAIER_ES7P0693__ -Dsbit=char    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\interrupt_key.c\"",
+        "file": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\interrupt_key.c"
+    },
+    {
+        "directory": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy",
+        "command": "clang -I\"C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE\" -D__HAIER_ES7P0693__ -Dsbit=char    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\interrupt_default.c\"",
+        "file": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\interrupt_default.c"
+    },
+    {
+        "directory": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy",
+        "command": "clang -I\"C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE\" -D__HAIER_ES7P0693__ -Dsbit=char    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\adc_ntc.c\"",
+        "file": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\adc_ntc.c"
+    },
+    {
+        "directory": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy",
         "command": "clang -I\"C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE\" -D__HAIER_ES7P0693__ -Dsbit=char    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\uart.c\"",
         "file": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\uart.c"
     },

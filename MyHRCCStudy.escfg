@@ -169,12 +169,72 @@
                     "Path": "uart.c",
                     "Type": "file",
                     "Children": []
+                },
+                {
+                    "ShortName": "adc_ntc.c",
+                    "Path": "adc_ntc.c",
+                    "Type": "file",
+                    "Children": []
+                },
+                {
+                    "ShortName": "adc_ntc.h",
+                    "Path": "adc_ntc.h",
+                    "Type": "file",
+                    "Children": []
+                },
+                {
+                    "ShortName": "interrupt_default.c",
+                    "Path": "interrupt_default.c",
+                    "Type": "file",
+                    "Children": []
+                },
+                {
+                    "ShortName": "interrupt_default.h",
+                    "Path": "interrupt_default.h",
+                    "Type": "file",
+                    "Children": []
+                },
+                {
+                    "ShortName": "interrupt_key.c",
+                    "Path": "interrupt_key.c",
+                    "Type": "file",
+                    "Children": []
+                },
+                {
+                    "ShortName": "interrupt_key.h",
+                    "Path": "interrupt_key.h",
+                    "Type": "file",
+                    "Children": []
+                },
+                {
+                    "ShortName": "interrupt_pin.c",
+                    "Path": "interrupt_pin.c",
+                    "Type": "file",
+                    "Children": []
+                },
+                {
+                    "ShortName": "interrupt_pin.h",
+                    "Path": "interrupt_pin.h",
+                    "Type": "file",
+                    "Children": []
+                },
+                {
+                    "ShortName": "led.c",
+                    "Path": "led.c",
+                    "Type": "file",
+                    "Children": []
+                },
+                {
+                    "ShortName": "led.h",
+                    "Path": "led.h",
+                    "Type": "file",
+                    "Children": []
                 }
             ]
         }
     ],
     [
         "cleanFlag",
-        false
+        true
     ]
 ]

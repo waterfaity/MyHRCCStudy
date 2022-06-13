@@ -121,6 +121,8 @@ void init_adc_ntc(void)
 
 #endif
 
+SET_MULA
+
     unsigned int i = 10000; //延时变量
     unsigned int j = 3000;  //延时变量
 
