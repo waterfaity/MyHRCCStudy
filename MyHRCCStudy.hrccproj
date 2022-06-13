@@ -61,6 +61,21 @@
     <OutputPath>debug\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="adc_ntc.c">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="interrupt_default.c">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="interrupt_key.c">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="interrupt_pin.c">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="led.c">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="main.c">
       <SubType>Code</SubType>
     </Compile>
@@ -69,6 +84,21 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="adc_ntc.h">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="interrupt_default.h">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="interrupt_key.h">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="interrupt_pin.h">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="led.h">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="uart.h">
       <SubType>Content</SubType>
     </Content>

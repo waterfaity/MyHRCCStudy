@@ -15,7 +15,7 @@
 //接收缓存
 unsigned char rxbuf;
 
-void init_gpio()
+void init_uart_gpio(void)
 {
     // PA/B/C 端口为复用端口 (模拟输入+数字输入/输出)
     //  ANSL 和 ANSH 值对应如下
@@ -36,20 +36,20 @@ void init_gpio()
     // ANSH2 : PA6
     // ANSH1 : PB4
     //其它保留未用
-    ANSL = 0xFF; //选择对应端口为数字IO功能
-    ANSH = 0xFF; //选择对应端口为数字IO功能
+    // ANSL = 0xFF; //选择对应端口为数字IO功能
+    // ANSH = 0xFF; //选择对应端口为数字IO功能
 
     //输入输出控制寄存器
     // 0: 输出
     // 1: 输入
-    PAT = 0x00;
-    PBT = 0x00;
-    PCT = 0x00;
+    // PAT = 0x00;
+    // PBT = 0x00;
+    // PCT = 0x00;
 
     //电平状态
-    PA = 0x00;
-    PB = 0x00;
-    PC = 0x00;
+    // PA = 0x00;
+    // PB = 0x00;
+    // PC = 0x00;
 }
 
 void init_uart(void)
@@ -150,22 +150,50 @@ void init_uart_2(void)
     TX1EN = 1;
 }
 
-/**
- * UART 中断
- * @brief
- *
- */
-void isr(void) interrupt
+void isr_uart(void)
 {
-    //接收1中断标志位=1 , 接收1中断使能=1
-    if (RX1IE == 1 && RX1IF == 1)
+    rxbuf = RX1B;
+    // 空标志位 TRMT1 = 1时 空闲
+    while (!TRMT1)
+        ;
+    TX1B = rxbuf;
+}
+
+char num_str[12];
+const char itoa_index[] = "0123456789"; // itoa 索引表
+
+char *myitoa(signed long num)
+{
+    signed long unum = num; /* 中间变量 */
+    signed long i = 0, j, k = 0;
+    char temp;
+    /* 确定unum的值 */
+    if (num < 0) /* 十进制负数 */
     {
-        rxbuf = RX1B;
-        // 空标志位 TRMT1 = 1时 空闲
-        while (!TRMT1)
-            ;
-        TX1B = rxbuf;
+        unum = -num;
+        num_str[i++] = '-';
     }
+    /* 逆序 */
+    do
+    {
+        num_str[i++] = itoa_index[unum % 10];
+        unum /= 10;
+    } while (unum);
+    num_str[i] = '\0';
+
+    /* 转换 */
+    if (num_str[0] == '-')
+    {
+        k = 1; /* 十进制负数 */
+    }
+
+    for (j = 0; j < (i - k) / 2; j++)
+    {
+        temp = num_str[j + k];
+        num_str[j + k] = num_str[i - j - 1];
+        num_str[i - j - 1] = temp;
+    }
+    return (char *)num_str;
 }
 
 /**
@@ -177,6 +205,46 @@ void isr(void) interrupt
 
 void uart_send(const char *data)
 {
+    while (*data)
+    {
+        while (!TRMT1)
+            ;
+        TX1B = *(data++);
+    }
+}
+void uart_send_interrupt(const char *data)
+{
+    while (*data)
+    {
+        while (!TRMT1)
+            ;
+        TX1B = *(data++);
+    }
+}
+
+void uart_send_interrupt_2(unsigned char *data)
+{
+    while (*data)
+    {
+        while (!TRMT1)
+            ;
+        TX1B = *(data++);
+    }
+}
+
+void uart_send_interrupt_3(char *data)
+{
+    while (*data)
+    {
+        while (!TRMT1)
+            ;
+        TX1B = *(data++);
+    }
+}
+
+void uart_send_num(signed long num)
+{
+    char *data = myitoa(num);
     while (*data)
     {
         while (!TRMT1)
