@@ -64,6 +64,12 @@
     <Compile Include="adc_ntc.c">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="adc_offset.c">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="flash.c">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="interrupt_default.c">
       <SubType>Code</SubType>
     </Compile>
@@ -79,12 +85,21 @@
     <Compile Include="main.c">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="my_string.c">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="uart.c">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="adc_ntc.h">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="adc_offset.h">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="flash.h">
       <SubType>Content</SubType>
     </Content>
     <Content Include="interrupt_default.h">
@@ -97,6 +112,9 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="led.h">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="my_string.h">
       <SubType>Content</SubType>
     </Content>
     <Content Include="uart.h">

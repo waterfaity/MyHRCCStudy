@@ -11,7 +11,9 @@
         "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\interrupt_default.c",
         "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\interrupt_key.c",
         "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\interrupt_pin.c",
-        "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\led.c"
+        "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\led.c",
+        "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\adc_offset.c",
+        "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\flash.c"
     ],
     "esls.compile.includePath": "C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE",
     "esls.compile.macro": "__HAIER_ES7P0693__",
@@ -22,7 +24,10 @@
         "uart.h": "c",
         "hic.h": "c",
         "hiint.h": "c",
-        "hr6p58l.h": "c"
+        "hr6p58l.h": "c",
+        "sys.h": "c",
+        "adc_offset.h": "c",
+        "my_string.h": "c"
     },
     "debug.allowBreakpointsEverywhere": true,
     "files.autoGuessEncoding": true,

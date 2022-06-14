@@ -9,7 +9,7 @@
  *
  */
 
-#include <HIC.h>
+#include "sys.h"
 #include "led.h"
 
 void init_led(void)

@@ -229,6 +229,30 @@
                     "Path": "led.h",
                     "Type": "file",
                     "Children": []
+                },
+                {
+                    "ShortName": "adc_offset.c",
+                    "Path": "adc_offset.c",
+                    "Type": "file",
+                    "Children": []
+                },
+                {
+                    "ShortName": "adc_offset.h",
+                    "Path": "adc_offset.h",
+                    "Type": "file",
+                    "Children": []
+                },
+                {
+                    "ShortName": "flash.c",
+                    "Path": "flash.c",
+                    "Type": "file",
+                    "Children": []
+                },
+                {
+                    "ShortName": "flash.h",
+                    "Path": "flash.h",
+                    "Type": "file",
+                    "Children": []
                 }
             ]
         }

@@ -9,9 +9,9 @@
  *
  */
 
-#include <HIC.h>
+#include "sys.h"
 #include "interrupt_key.h"
-#include "uart.h"
+ 
 
 void init_interrupt_key_gpio(void)
 {

@@ -9,10 +9,9 @@
  *
  */
 
-#include <HIC.h>
-#include "uart.h"
+#include "sys.h"
 #include "interrupt_key.h"
-#include "adc_ntc.h"
+#include "adc_offset.h"
 
 /**
  * UART 中断
@@ -39,11 +38,11 @@ void isr(void) interrupt
 #endif
 
 //温度传感器
-#ifdef __ADC_NTC_H__
+#ifdef __ADC_OFFSET_H__
     //接收1中断标志位=1 , 接收1中断使能=1
     if (ADIE == 1 && ADIF == 1)
     {
-        isr_adc_ntc();
+        isr_adc_offset();
     }
 #endif
 }

@@ -10,7 +10,7 @@
  */
 
 #include "interrupt_pin.h"
-#include "HIC.h"
+#include "sys.h"
 
 void init_interrupt_out(void)
 {

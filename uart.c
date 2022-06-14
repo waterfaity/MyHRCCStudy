@@ -9,8 +9,7 @@
  * @copyright Copyright (c) 2022
  *
  */
-#include "uart.h"
-#include <HIC.h>
+#include "sys.h"
 
 //接收缓存
 unsigned char rxbuf;
@@ -159,43 +158,6 @@ void isr_uart(void)
     TX1B = rxbuf;
 }
 
-char num_str[12];
-const char itoa_index[] = "0123456789"; // itoa 索引表
-
-char *myitoa(signed long num)
-{
-    signed long unum = num; /* 中间变量 */
-    signed long i = 0, j, k = 0;
-    char temp;
-    /* 确定unum的值 */
-    if (num < 0) /* 十进制负数 */
-    {
-        unum = -num;
-        num_str[i++] = '-';
-    }
-    /* 逆序 */
-    do
-    {
-        num_str[i++] = itoa_index[unum % 10];
-        unum /= 10;
-    } while (unum);
-    num_str[i] = '\0';
-
-    /* 转换 */
-    if (num_str[0] == '-')
-    {
-        k = 1; /* 十进制负数 */
-    }
-
-    for (j = 0; j < (i - k) / 2; j++)
-    {
-        temp = num_str[j + k];
-        num_str[j + k] = num_str[i - j - 1];
-        num_str[i - j - 1] = temp;
-    }
-    return (char *)num_str;
-}
-
 /**
  * UART 中断
  * 0x18
@@ -244,11 +206,34 @@ void uart_send_interrupt_3(char *data)
 
 void uart_send_num(signed long num)
 {
-    char *data = myitoa(num);
+    char *data = num_to_char(num);
     while (*data)
     {
         while (!TRMT1)
             ;
         TX1B = *(data++);
+    }
+}
+
+/**********************************************
+函数名：UART_send(uchar *str,uchar ch,uint value)
+描  述：UART发送函数
+输入值：字符串指针，通道数，ADC转换值
+输出值：无
+返回值：无
+**********************************************/
+void UART_send(unsigned char *str, unsigned char ch, unsigned int value)
+{
+    *(str + 4) = ch + '0';
+    *(str + 16) = value / 1000 + '0';
+    *(str + 17) = value % 1000 / 100 + '0';
+    *(str + 18) = value % 100 / 10 + '0';
+    *(str + 19) = value % 10 + '0';
+
+    while (*str)
+    {
+        while (!TRMT1)
+            ;
+        TX1B = *str++;
     }
 }

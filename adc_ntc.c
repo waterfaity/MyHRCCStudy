@@ -10,8 +10,7 @@
  */
 
 #include "adc_ntc.h"
-#include <HIC.h>
-#include "uart.h"
+#include "sys.h"
 /**
  *
  * @brief PB3
