@@ -85,6 +85,9 @@
     <Compile Include="main.c">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="my_math.c">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="my_string.c">
       <SubType>Code</SubType>
     </Compile>
@@ -112,6 +115,9 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="led.h">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="my_math.h">
       <SubType>Content</SubType>
     </Content>
     <Content Include="my_string.h">

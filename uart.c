@@ -174,6 +174,16 @@ void uart_send(const char *data)
         TX1B = *(data++);
     }
 }
+
+void uart_send_char(char *data)
+{
+    while (*data)
+    {
+        while (!TRMT1)
+            ;
+        TX1B = *(data++);
+    }
+}
 void uart_send_interrupt(const char *data)
 {
     while (*data)

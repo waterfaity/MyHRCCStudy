@@ -13,7 +13,9 @@
         "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\interrupt_pin.c",
         "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\led.c",
         "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\adc_offset.c",
-        "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\flash.c"
+        "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\flash.c",
+        "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\my_math.c",
+        "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\my_string.c"
     ],
     "esls.compile.includePath": "C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE",
     "esls.compile.macro": "__HAIER_ES7P0693__",

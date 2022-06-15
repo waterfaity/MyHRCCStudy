@@ -9,27 +9,35 @@
  *
  */
 #include "sys.h"
-
-char char_str[20];
-char char_str_2[5] = {'a', 'b', '\0'};
+#include "my_math.h"
+#include <string.h>
 long char_to_num(char *data)
 {
     long num = 0;
     return num;
 }
 
-char *float_to_char(float num)
+char temp_double_to_char[100];
+/**
+ * @brief  浮点型转字符
+ *
+ * @param num
+ * @return char*
+ */
+char *doble_to_char(double num)
 {
-    unsigned long addr_index = 0;
+
+    my_memset(temp_double_to_char, '\0', 100);
+    long addr_index = 0;
     unsigned long abs_num = num;
 
-    char temp[5];
+    char temp[10];
     // ------- 负号
 
     if (num < 0)
     {
         // 取负号
-        char_str_2[addr_index++] = '-';
+        temp_double_to_char[addr_index++] = '-';
         abs_num = (long)(-num);
     }
     else
@@ -40,67 +48,131 @@ char *float_to_char(float num)
     // ------- 整数部分
 
     //取出整数部分数字 倒序 如 num = 12345  取值为 temp = {5,4,3,2,1}
-    int num_index = 0;
-    temp[num_index++] = abs_num % 10 + '0';
+    int temp_index = 0;
     do
     {
+        temp[temp_index++] = abs_num % 10 + '0';
         abs_num /= 10;
-        temp[num_index++] = abs_num % 10 + '0';
 
-    } while (abs_num > 10);
+    } while (abs_num >= 1);
     //整数顺序反过来
     int i = 0;
-    for (i = 0; i < num_index; i++)
+    for (i = 0; i < temp_index; i++)
     {
-        char_str_2[addr_index++] = temp[num_index - 1 - i];
+        temp_double_to_char[addr_index++] = temp[temp_index - 1 - i];
     }
 
     // ------- 小数部分
 
-    if (num - (signed long)num != 0)
+    if (num - (long)num != 0)
     {
-        //有小数部分
-        char_str_2[addr_index++] = '.';
+        //有小数部分 -> 0.12345
+        temp_double_to_char[addr_index++] = '.';
+        //计算小数短后7位 *10000000 变整数 -> 1234500
+        double decimal = (num - (long)num);
+
+        decimal = decimal < 0 ? (-decimal) : decimal;
+        abs_num = (long)(decimal * 10000000L);
+
+        //记录最后一次0的位置 , 过滤多余的0  ->12345
+        int last_zero_index = 0;
+        int is_last_zero = 1;
+        temp_index = 0;
+        do
+        {
+            if (abs_num % 10 == 0 && is_last_zero)
+            {
+                is_last_zero = 1;
+                last_zero_index = temp_index;
+            }
+            else
+            {
+                is_last_zero = 0;
+            }
+
+            temp[temp_index++] = abs_num % 10 + '0';
+            abs_num /= 10;
+        } while (abs_num >= 1);
+        for (i = 0; i < temp_index - last_zero_index; i++)
+        {
+            temp_double_to_char[addr_index++] = temp[temp_index - 1 - i];
+        }
     }
-
-    char_str_2[addr_index++] = '\0';
-
-    return (char *)char_str_2;
+    //末尾加0
+    temp_double_to_char[addr_index++] = '\0';
+    return (char *)temp_double_to_char;
 }
 
-const char itoa_index[] = "0123456789"; // itoa 索引表
-char *num_to_char(signed long num)
+char temp_num_to_char[100];
+/**
+ * @brief 数字换字符
+ *
+ * @param num
+ * @return char*
+ */
+char *num_to_char(long num)
 {
-    signed long unum = num; /* 中间变量 */
-    signed long i = 0, j, k = 0;
-    char temp;
-    /* 确定unum的值 */
-    if (num < 0) /* 十进制负数 */
+
+    my_memset(temp_num_to_char, '\0', 100);
+    long addr_index = 0;
+    unsigned long abs_num = num;
+
+    char temp[10];
+    // ------- 负号
+
+    if (num < 0)
     {
-        unum = -num;
-        char_str[i++] = '-';
+        // 取负号
+        temp_num_to_char[addr_index++] = '-';
+        abs_num = (long)(-num);
     }
-    /* 逆序 */
+    else
+    {
+        //取整
+        abs_num = (long)num;
+    }
+    // ------- 整数部分
+
+    //取出整数部分数字 倒序 如 num = 12345  取值为 temp = {5,4,3,2,1}
+    int temp_index = 0;
     do
     {
-        char_str[i++] = itoa_index[unum % 10];
-        unum /= 10;
-    } while (unum);
-    char_str[i] = '\0';
+        temp[temp_index++] = abs_num % 10 + '0';
+        abs_num /= 10;
 
-    /* 转换 */
-    if (char_str[0] == '-')
+    } while (abs_num >= 1);
+    //整数顺序反过来
+    int i = 0;
+    for (i = 0; i < temp_index; i++)
     {
-        k = 1; /* 十进制负数 */
+        temp_num_to_char[addr_index++] = temp[temp_index - 1 - i];
     }
-
-    for (j = 0; j < (i - k) / 2; j++)
-    {
-        temp = char_str[j + k];
-        char_str[j + k] = char_str[i - j - 1];
-        char_str[i - j - 1] = temp;
-    }
-    return (char *)char_str;
+    //末尾加0
+    temp_num_to_char[addr_index++] = '\0';
+    return (char *)temp_num_to_char;
 }
+void *my_memset(void *s, int c, int n)
+{
+    char *xs = s;
 
-char *char_add_num(char *str, signed long num);
+    while (n--)
+        *xs++ = c;
+    return s;
+}
+char temp_char_add[100];
+char *char_add_num(const char *str, double num)
+{
+
+    my_memset(temp_char_add, '\0', 100);
+    char *doubleChar = doble_to_char(num);
+    int addr_index = 0;
+    while (*str != '\0')
+    {
+        temp_char_add[addr_index++] = *(str++);
+    }
+    while (*doubleChar != '\0')
+    {
+        temp_char_add[addr_index++] = *(doubleChar++);
+    }
+    return (char *)temp_char_add;
+}

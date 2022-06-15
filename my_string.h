@@ -12,12 +12,13 @@
 #ifndef __MY_STRING_H__
 #define __MY_STRING_H__
 
-long char_to_num(char *data);
+extern void *my_memset(void *p1, int c, int n);
+extern long char_to_num(char *data);
 
-char *float_to_char(float num);
+extern char *doble_to_char(double num);
 
-char *num_to_char(signed long num);
+extern char *num_to_char(signed long num);
 
-char *char_add_num(char *str, signed long num);
+extern char *char_add_num(const char *str, double num);
 
 #endif

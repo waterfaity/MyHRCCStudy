@@ -19,8 +19,9 @@ void main()
 {
     init_uart();
     uart_send("Hello World !");
-    init_adc_offset();
+    // init_adc_offset();
 
+    uart_send_char(char_add_num("abc:", 123.12));
     while (1)
     {
     }

@@ -17,6 +17,9 @@
 #include "adc_offset.h"
 // ntc 温度开始
 const int START_TEMP_CODE = -20;
+// adc温度表长度
+const int START_TEMP_CODE_LEN = 220;
+// adc温度表
 const unsigned long RES_TEMP_CODE[] = // ADC对应温度值 恒温档测试下来在90度
     {
         3911, 3901, 3890, 3878, 3866, 3853, 3840, 3827, 3813, 3799, // -20~ -11
@@ -86,18 +89,15 @@ void init_adc_offset(void)
 #ifdef VDDVREF
     while (cnt != 0)
     {
-
         offset_value = flash_read(ADD_VREFEN_NOT);             //获取offset值
         if ((offset_value >> 8) == ((~offset_value) & 0x00FF)) //是否满足高低8位取反，是则取低8位作为offset
         {
             offset_value = offset_value & 0x00FF;
-
             break;
         }
         else
         {
             cnt--;
-
             if (cnt == 0)
                 offset_value = 0; //读IAP超过3次后仍不满足高低8位取反则offset固定为0
         }
@@ -106,22 +106,9 @@ void init_adc_offset(void)
     // ADCCL 的两步操作即为 设置通道7
     ADCCL |= 0xF0; // ADCCL<7:4>选择通道 1111 0000 高位设1 低位不变
     ADCCL &= 0x7F; //选择通道0  0101 1111, 高位设置 111 ,低位不变
-
-    // 12 1935
-    // 11 9
-    // 10 2700
-    // 9 4087 不变
-    // 7 2160
-    // 6 2640
-    // 5 2903
-    // 4 1727
-    // 3 1854
-    // 2 0    不变
-    // 1 4087 不变
-    // 0 2085
-    ADCCM = 0x4B; //参考源VDD,负参考固定选择VSS，转换位数固定选择12位，AD调整offset固定选择档位1
-    ADCCH = 0xC8; //低位对齐;时钟周期FOSC/16
-    ADEN = 1;     //使能ADC模块
+    ADCCM = 0x4B;  //参考源VDD,负参考固定选择VSS，转换位数固定选择12位，AD调整offset固定选择档位1
+    ADCCH = 0xC8;  //低位对齐;时钟周期FOSC/16
+    ADEN = 1;      //使能ADC模块
 #else
     while (cnt != 0)
     {
@@ -135,7 +122,6 @@ void init_adc_offset(void)
         else
         {
             cnt--;
-
             if (cnt == 0)
                 offset_value = 0; //读IAP超过3次后仍不满足高低8位取反则offset固定为0
         }
@@ -176,68 +162,61 @@ unsigned int calc_adc_value()
     return adc_value;
 }
 
-float calc_ntc(unsigned int adc_value)
+double calc_ntc(unsigned int adc_value)
 {
 
-    int len = sizeof(RES_TEMP_CODE) / sizeof(RES_TEMP_CODE[0]);
     //二分比较法下标
     int temp_index = 0;
-    //比较状态 0:相等 ; 1:比当前大 ; -1:比当前小
-    int status = 0;
 
-    int start_index = 0, end_index = len - 1;
+    unsigned long temp_adc = 0;
+    int start_index = 0, end_index = START_TEMP_CODE_LEN - 1;
     int i = 0;
-    for (i = 0; i < len / 2; i++)
+
+    for (i = 0; i < START_TEMP_CODE_LEN / 2; i++)
     {
-        int index = (end_index - start_index) / 2;
-        temp_index = index;
-        if (adc_value == RES_TEMP_CODE[index])
+        temp_index = (end_index + start_index) / 2;
+        temp_adc = RES_TEMP_CODE[temp_index];
+
+        if (adc_value == temp_adc)
         {
-            status = 0;
             break;
         }
-        else if (adc_value > RES_TEMP_CODE[index])
+        else if (adc_value > temp_adc)
         {
-            status = 1;
-            start_index = temp_index;
+            end_index = temp_index;
         }
         else
         {
-            status = -1;
-            end_index = temp_index;
+            start_index = temp_index;
+        }
+        if (temp_index == START_TEMP_CODE_LEN - 2)
+        {
+            //二分法倒数第二个比较结束->比较最大
+            if (adc_value == RES_TEMP_CODE[START_TEMP_CODE_LEN - 1])
+            {
+                temp_adc = adc_value;
+                temp_index = START_TEMP_CODE_LEN - 1;
+            }
+
+            break;
+        }
+        else if (temp_index == 1)
+        {
+            //二分法第二个比较结束->比较最小
+            if (adc_value == RES_TEMP_CODE[0])
+            {
+                temp_adc = adc_value;
+                temp_index = 0;
+            }
+            break;
         }
     }
 
-    float ntc = 0;
-    float ntc_offset = 0;
-    if (status == 0)
-    {
-        ntc_offset = 0;
-    }
-    else if (status == 1)
-    {
-        if (temp_index == len - 1)
-        {
-            //大于最高温度
-            ntc_offset = 0;
-        }
-        else
-        {
-            ntc_offset = (adc_value - RES_TEMP_CODE[temp_index]) / (float)(RES_TEMP_CODE[temp_index + 1] - RES_TEMP_CODE[temp_index]);
-        }
-    }
-    else
-    {
-        if (temp_index == 0)
-        {
-            //小于最低温度
-            ntc_offset = 0;
-        }
-        else
-        {
-            ntc_offset = (adc_value - RES_TEMP_CODE[temp_index]) / (float)(RES_TEMP_CODE[temp_index] - RES_TEMP_CODE[temp_index - 1]);
-        }
-    }
+    double ntc = 0;
+    long adc_offset = adc_value - temp_adc;
+    long code_offset = RES_TEMP_CODE[end_index] - RES_TEMP_CODE[start_index];
+
+    double ntc_offset = adc_offset / (double)code_offset;
     ntc = START_TEMP_CODE + temp_index + ntc_offset;
     return ntc;
 }
@@ -245,10 +224,10 @@ float calc_ntc(unsigned int adc_value)
 void isr_adc_offset(void)
 {
     unsigned int adc_value = calc_adc_value();
-    float ntc_value = calc_ntc(adc_value);
+    double ntc_value = calc_ntc(adc_value);
 
-    char *data1 = float_to_char(-1345.7);
-    uart_send_interrupt_2((unsigned char *)data1);
+    // char *data1 = doble_to_char(ntc_value);
+    // uart_send_interrupt_2((unsigned char *)data1);
     // uart_send_num(adc_value);
     uart_send_interrupt("\n");
     ADIF = 0;

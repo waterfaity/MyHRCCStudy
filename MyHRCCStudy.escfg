@@ -253,12 +253,36 @@
                     "Path": "flash.h",
                     "Type": "file",
                     "Children": []
+                },
+                {
+                    "ShortName": "my_math.c",
+                    "Path": "my_math.c",
+                    "Type": "file",
+                    "Children": []
+                },
+                {
+                    "ShortName": "my_math.h",
+                    "Path": "my_math.h",
+                    "Type": "file",
+                    "Children": []
+                },
+                {
+                    "ShortName": "my_string.c",
+                    "Path": "my_string.c",
+                    "Type": "file",
+                    "Children": []
+                },
+                {
+                    "ShortName": "my_string.h",
+                    "Path": "my_string.h",
+                    "Type": "file",
+                    "Children": []
                 }
             ]
         }
     ],
     [
         "cleanFlag",
-        true
+        false
     ]
 ]
