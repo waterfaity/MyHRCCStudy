@@ -12,6 +12,7 @@
 #include "sys.h"
 #include "interrupt_key.h"
 #include "adc_offset.h"
+#include "t8n.h"
 
 /**
  * UART ÖÐ¶Ï
@@ -44,5 +45,12 @@ void isr(void) interrupt
     {
         isr_adc_offset();
     }
+#endif
+#ifdef __T8N_H__
+    if (T8NIE == 1 && T8NIF == 1)
+    {
+        isr_t8n();
+    }
+
 #endif
 }

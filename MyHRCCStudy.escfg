@@ -277,12 +277,24 @@
                     "Path": "my_string.h",
                     "Type": "file",
                     "Children": []
+                },
+                {
+                    "ShortName": "t8n.c",
+                    "Path": "t8n.c",
+                    "Type": "file",
+                    "Children": []
+                },
+                {
+                    "ShortName": "t8n.h",
+                    "Path": "t8n.h",
+                    "Type": "file",
+                    "Children": []
                 }
             ]
         }
     ],
     [
         "cleanFlag",
-        false
+        true
     ]
 ]

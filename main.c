@@ -14,14 +14,14 @@
 #include "led.h"
 #include "adc_ntc.h"
 #include "adc_offset.h"
-
+#include "t8n.h"
 void main()
 {
+
     init_uart();
     uart_send("Hello World !");
-    // init_adc_offset();
-
-    uart_send_char(char_add_num("abc:", 123.12));
+    init_adc_offset();
+    // init_t8n();
     while (1)
     {
     }

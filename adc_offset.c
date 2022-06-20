@@ -226,6 +226,8 @@ void isr_adc_offset(void)
     unsigned int adc_value = calc_adc_value();
     double ntc_value = calc_ntc(adc_value);
 
+    uart_send_char(char_add_num("ÎÂ¶È:", ntc_value));
+
     // char *data1 = doble_to_char(ntc_value);
     // uart_send_interrupt_2((unsigned char *)data1);
     // uart_send_num(adc_value);

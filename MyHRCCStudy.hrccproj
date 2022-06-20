@@ -91,6 +91,9 @@
     <Compile Include="my_string.c">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="t8n.c">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="uart.c">
       <SubType>Code</SubType>
     </Compile>
@@ -121,6 +124,9 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="my_string.h">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="t8n.h">
       <SubType>Content</SubType>
     </Content>
     <Content Include="uart.h">

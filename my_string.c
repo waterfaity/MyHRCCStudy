@@ -17,7 +17,7 @@ long char_to_num(char *data)
     return num;
 }
 
-char temp_double_to_char[100];
+char temp_double_to_char[20];
 /**
  * @brief  ¸¡µãÐÍ×ª×Ö·û
  *
@@ -27,7 +27,7 @@ char temp_double_to_char[100];
 char *doble_to_char(double num)
 {
 
-    my_memset(temp_double_to_char, '\0', 100);
+    my_memset(temp_double_to_char, '\0', 20);
     long addr_index = 0;
     unsigned long abs_num = num;
 
@@ -103,7 +103,7 @@ char *doble_to_char(double num)
     return (char *)temp_double_to_char;
 }
 
-char temp_num_to_char[100];
+char temp_num_to_char[20];
 /**
  * @brief Êý×Ö»»×Ö·û
  *
@@ -113,7 +113,7 @@ char temp_num_to_char[100];
 char *num_to_char(long num)
 {
 
-    my_memset(temp_num_to_char, '\0', 100);
+    my_memset(temp_num_to_char, '\0', 20);
     long addr_index = 0;
     unsigned long abs_num = num;
 
@@ -159,11 +159,11 @@ void *my_memset(void *s, int c, int n)
         *xs++ = c;
     return s;
 }
-char temp_char_add[100];
+char temp_char_add[20];
 char *char_add_num(const char *str, double num)
 {
 
-    my_memset(temp_char_add, '\0', 100);
+    my_memset(temp_char_add, '\0', 20);
     char *doubleChar = doble_to_char(num);
     int addr_index = 0;
     while (*str != '\0')
