@@ -9,48 +9,51 @@
  *
  */
 
+
 #include "sys.h"
-#include "interrupt_key.h"
-#include "adc_offset.h"
-#include "t8n.h"
 
-/**
- * UART 中断
- * @brief
- *
- */
-void isr(void) interrupt
-{
-// uart 接收中断
-#ifdef __UART_H__
-    //接收1中断标志位=1 , 接收1中断使能=1
-    if (RX1IE == 1 && RX1IF == 1)
-    {
-        isr_uart();
-    }
-#endif
-//外部按键中断
-#ifdef __INTERRUPT_KEY_H__
-    //接收1中断标志位=1 , 接收1中断使能=1
-    if (KIE == 1 && KIF == 1)
-    {
-        isr_interrupt_key();
-    }
-#endif
 
-//温度传感器
-#ifdef __ADC_OFFSET_H__
-    //接收1中断标志位=1 , 接收1中断使能=1
-    if (ADIE == 1 && ADIF == 1)
-    {
-        isr_adc_offset();
-    }
-#endif
-#ifdef __T8N_H__
-    if (T8NIE == 1 && T8NIF == 1)
-    {
-        isr_t8n();
-    }
 
-#endif
-}
+
+
+ //  /**
+ //   * UART 中断
+ //   * @brief
+ //   *
+ //   */
+ // void isr(void) interrupt
+ // {
+ //     // uart 接收中断
+ // #ifdef __UART_H__
+ //     //接收1中断标志位=1 , 接收1中断使能=1
+ //     if (RX1IE == 1 && RX1IF == 1)
+ //     {
+ //         isr_uart();
+ //     }
+ // #endif
+ //     //外部按键中断
+ // #ifdef __KEY_H__
+ //     //接收1中断标志位=1 , 接收1中断使能=1
+ //     if (KIE == 1 && KIF == 1)
+ //     {
+ //         isr_key();
+ //     }
+ // #endif
+
+ //     //温度传感器
+ // #ifdef __ADC_OFFSET_H__
+ //     //接收1中断标志位=1 , 接收1中断使能=1
+ //     if (ADIE == 1 && ADIF == 1)
+ //     {
+ //         isr_adc_ntc();
+ //     }
+ // #endif
+ // #ifdef __T8N_H__
+ //     if (T8NIE == 1 && T8NIF == 1)
+ //     {
+ //         isr_t8n();
+ //     }
+
+ // #endif
+ // }
+

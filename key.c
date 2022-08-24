@@ -1,5 +1,5 @@
 /**
- * @file interrupt_key.c
+ * @file key.c
  * @author WaterFairy (995637517@qq.com)
  * @brief
  * @version 1.0.0
@@ -10,29 +10,10 @@
  */
 
 #include "sys.h"
-#include "interrupt_key.h"
- 
+#include "key.h"
 
-void init_interrupt_key_gpio(void)
+void init_key(void)
 {
-    //设置数字输入/输出
-    ANSH = 0xFF;
-    ANSL = 0xFF;
-
-    //设置输入
-    PAT = 0xFF;
-    PBT = 0xFF;
-    PCT = 0xFF;
-
-    //电平状态
-    PA = 0x00;
-    PB = 0x00;
-    PC = 0x00;
-}
-
-void init_interrupt_key(void)
-{
-    // init_interrupt_key_gpio();
 
     //按键PB6 按键屏蔽:KMSK5
 
@@ -51,7 +32,7 @@ void init_interrupt_key(void)
     //中断标志清零
     KIF = 0;
 }
-void isr_interrupt_key(void)
+void isr_key(void)
 {
     uart_send_interrupt("zhongdan le");
     KIF = 0;

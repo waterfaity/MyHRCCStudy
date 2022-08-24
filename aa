@@ -1,0 +1,11 @@
+<PreprocessSwitch>False</PreprocessSwitch>
+<INTVECT>True</INTVECT>
+<PACKED>False</PACKED>
+<OLDCM>False</OLDCM>
+<STDLIB>False</STDLIB>
+<MATHLIB>False</MATHLIB>
+<REMVAR>False</REMVAR>
+<MSEC>True</MSEC>
+<HasmExtraOption />
+<OUTCG>False</OUTCG>
+<TMPM>False</TMPM>

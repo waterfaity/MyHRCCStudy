@@ -1,62 +1,62 @@
 [
     {
         "directory": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy",
-        "command": "clang -I\"C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE\" -D__HAIER_ES7P0693__ -Dsbit=char    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\t8n.c\"",
+        "command": "clang -I\"C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE\" -D__HAIER_ES7P0693__    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\t8n.c\"",
         "file": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\t8n.c"
     },
     {
         "directory": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy",
-        "command": "clang -I\"C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE\" -D__HAIER_ES7P0693__ -Dsbit=char    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\my_string.c\"",
+        "command": "clang -I\"C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE\" -D__HAIER_ES7P0693__    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\my_string.c\"",
         "file": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\my_string.c"
     },
     {
         "directory": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy",
-        "command": "clang -I\"C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE\" -D__HAIER_ES7P0693__ -Dsbit=char    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\my_math.c\"",
+        "command": "clang -I\"C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE\" -D__HAIER_ES7P0693__    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\my_math.c\"",
         "file": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\my_math.c"
     },
     {
         "directory": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy",
-        "command": "clang -I\"C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE\" -D__HAIER_ES7P0693__ -Dsbit=char    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\flash.c\"",
+        "command": "clang -I\"C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE\" -D__HAIER_ES7P0693__    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\flash.c\"",
         "file": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\flash.c"
     },
     {
         "directory": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy",
-        "command": "clang -I\"C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE\" -D__HAIER_ES7P0693__ -Dsbit=char    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\adc_offset.c\"",
+        "command": "clang -I\"C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE\" -D__HAIER_ES7P0693__    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\adc_offset.c\"",
         "file": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\adc_offset.c"
     },
     {
         "directory": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy",
-        "command": "clang -I\"C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE\" -D__HAIER_ES7P0693__ -Dsbit=char    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\led.c\"",
+        "command": "clang -I\"C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE\" -D__HAIER_ES7P0693__    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\led.c\"",
         "file": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\led.c"
     },
     {
         "directory": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy",
-        "command": "clang -I\"C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE\" -D__HAIER_ES7P0693__ -Dsbit=char    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\interrupt_pin.c\"",
+        "command": "clang -I\"C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE\" -D__HAIER_ES7P0693__    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\interrupt_pin.c\"",
         "file": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\interrupt_pin.c"
     },
     {
         "directory": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy",
-        "command": "clang -I\"C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE\" -D__HAIER_ES7P0693__ -Dsbit=char    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\interrupt_key.c\"",
-        "file": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\interrupt_key.c"
+        "command": "clang -I\"C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE\" -D__HAIER_ES7P0693__    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\key.c\"",
+        "file": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\key.c"
     },
     {
         "directory": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy",
-        "command": "clang -I\"C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE\" -D__HAIER_ES7P0693__ -Dsbit=char    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\interrupt_default.c\"",
+        "command": "clang -I\"C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE\" -D__HAIER_ES7P0693__    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\interrupt_default.c\"",
         "file": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\interrupt_default.c"
     },
     {
         "directory": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy",
-        "command": "clang -I\"C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE\" -D__HAIER_ES7P0693__ -Dsbit=char    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\adc_ntc.c\"",
+        "command": "clang -I\"C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE\" -D__HAIER_ES7P0693__    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\adc_ntc.c\"",
         "file": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\adc_ntc.c"
     },
     {
         "directory": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy",
-        "command": "clang -I\"C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE\" -D__HAIER_ES7P0693__ -Dsbit=char    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\uart.c\"",
+        "command": "clang -I\"C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE\" -D__HAIER_ES7P0693__    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\uart.c\"",
         "file": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\uart.c"
     },
     {
         "directory": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy",
-        "command": "clang -I\"C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE\" -D__HAIER_ES7P0693__ -Dsbit=char    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\main.c\"",
+        "command": "clang -I\"C:\\Program Files (x86)\\HRCC Tools\\HRCC v1.2.0.124\\tools\\INCLUDE\" -D__HAIER_ES7P0693__    -c \"c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\main.c\"",
         "file": "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\main.c"
     }
 ]

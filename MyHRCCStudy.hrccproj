@@ -6,7 +6,7 @@
     <ProjectGuid>{ec97ce08-c83a-46ab-aca4-0aa323c2c969}</ProjectGuid>
     <ProjectType>HRCC</ProjectType>
     <ChipType>ES7P0693FHTF</ChipType>
-    <ChipConfig>AA5575678E98FFFF609FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</ChipConfig>
+    <ChipConfig>AA557D678E98FFFF609FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</ChipConfig>
     <TargetPath>debug\</TargetPath>
     <HiccInclude>
     </HiccInclude>
@@ -50,6 +50,17 @@
     <Name>MyHRCCStudy</Name>
     <RootNamespace>MyHRCCStudy</RootNamespace>
     <ToolChain>HRCC v1.2.0.124</ToolChain>
+    <!-- <PreprocessSwitch>False</PreprocessSwitch> -->
+    <INTVECT>True</INTVECT>
+    <!-- <PACKED>False</PACKED>
+    <OLDCM>False</OLDCM>
+    <STDLIB>False</STDLIB>
+    <MATHLIB>False</MATHLIB>
+    <REMVAR>False</REMVAR>
+    <MSEC>True</MSEC>
+    <HasmExtraOption />
+    <OUTCG>False</OUTCG>
+    <TMPM>False</TMPM> -->
     <Crystal>8</Crystal>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -61,19 +72,25 @@
     <OutputPath>debug\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="adc_ntc.c">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="adc_offset.c">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="flash.c">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="function.c">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="interrupt_vector.c">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="timer.c">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="interrupt_default.c">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="interrupt_key.c">
+    <Compile Include="key.c">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="interrupt_pin.c">
@@ -99,25 +116,31 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="adc_ntc.h">
-      <SubType>Content</SubType>
-    </Content>
     <Content Include="adc_offset.h">
       <SubType>Content</SubType>
     </Content>
     <Content Include="flash.h">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="function.h">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="interrupt_default.h">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="interrupt_key.h">
+    <Content Include="interrupt_vector.h">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="key.h">
       <SubType>Content</SubType>
     </Content>
     <Content Include="interrupt_pin.h">
       <SubType>Content</SubType>
     </Content>
     <Content Include="led.h">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="timer.h">
       <SubType>Content</SubType>
     </Content>
     <Content Include="my_math.h">

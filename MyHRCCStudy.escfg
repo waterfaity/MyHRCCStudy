@@ -195,14 +195,14 @@
                     "Children": []
                 },
                 {
-                    "ShortName": "interrupt_key.c",
-                    "Path": "interrupt_key.c",
+                    "ShortName": "key.c",
+                    "Path": "key.c",
                     "Type": "file",
                     "Children": []
                 },
                 {
-                    "ShortName": "interrupt_key.h",
-                    "Path": "interrupt_key.h",
+                    "ShortName": "key.h",
+                    "Path": "key.h",
                     "Type": "file",
                     "Children": []
                 },
@@ -295,6 +295,6 @@
     ],
     [
         "cleanFlag",
-        true
+        false
     ]
 ]

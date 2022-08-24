@@ -10,19 +10,29 @@
  *
  */
 
-#include "sys.h"
-#include "led.h"
-#include "adc_ntc.h"
-#include "adc_offset.h"
-#include "t8n.h"
-void main()
-{
+#include "sys.h" 
 
+void main() {
+
+    //初始化向量中断
+    init_interrupt_vector();
+    //初始化T8N
+    t8n_init();
+    //初始化串口
     init_uart();
-    uart_send("Hello World !");
+    //发送日志
+    uart_send("Hello World ! ");
+    //初始化adc
     init_adc_offset();
-    // init_t8n();
+    //亮灯
+    // init_led();
+    // led_light(0);
+
     while (1)
     {
+        //1s中断需要处理的数据
+        handle_one_second();
+        //需要实时处理的数据
+        handle_data();
     }
 }

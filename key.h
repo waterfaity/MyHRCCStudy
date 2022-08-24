@@ -1,5 +1,5 @@
 /**
- * @file interrupt_key.h
+ * @file key.h
  * @author WaterFairy (995637517@qq.com)
  * @brief
  * @version 1.0.0
@@ -8,10 +8,10 @@
  * @copyright Copyright (c) 2022
  *
  */
-#ifndef __INTERRUPT_KEY_H__
-#define __INTERRUPT_KEY_H__
+#ifndef __KEY_H__
+#define __KEY_H__
 
-void init_interrupt_key();
-void isr_interrupt_key(void);
+void init_key();
+void isr_key(void);
 
 #endif

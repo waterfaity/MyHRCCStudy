@@ -14,12 +14,56 @@
 
 #include "t8n.h"
 #include "sys.h"
-unsigned int timer_cnt;
-// 1hz =
-unsigned int C_1000_MS = 0;
+#include "timer.h"
 
-void init_t8n(void)
+
+ //0.1ms T8N溢出(中断)一次
+#define T8N_OFFSET (256-25)
+
+/**
+ * @brief 点灯测试
+ *
+ */
+void t8n_test_init() {
+
+    //模拟 / 数字
+    ANSL = 0xFF;
+    ANSH = 0xFF;
+    //输入 / 出
+    PBT = 0x00;
+    PAT = 0x00;
+    PCT = 0x00;
+    //高低电位
+    PA = 0x00;
+    PB = 0x00;
+    PB = 0x00;
+
+
+}
+int state = 0;
+void t8n_test() {
+    //RGB
+    if (state == 0)
+    {
+        state = 1;
+        /* code */
+    }
+    else {
+        state = 0;
+    }
+
+    PA0 = state;
+    PA7 = state;
+    PB7 = state;
+    // uart_send_num(PA0);
+    // uart_send_num(PA7);
+    // uart_send_num(PB7);
+}
+
+
+void t8n_init(void)
 {
+    t8n_test_init();
 
     // FOSC =16 000 000HZ
     // 32分频
@@ -38,28 +82,25 @@ void init_t8n(void)
     // 1            101                 (Fosc/2)/64     Fintlrc /64
     // 1            110                 (Fosc/2)/128    Fintlrc /128
     // 1            111                 (Fosc/2)/256    Fintlrc /256
-    // A 1010
-    // B 1011
-    // C 1100
-    // D 1101
-    // E 1110
-    // F 1111
-    timer_cnt = 0;
-    T8NC = 0x0C; //定时器模式，预分频1:(Fosc/2)/32  1100 =  C
-    T8N = (256 - 250);
-    T8NIE = 1; //中断使能
-    T8NIF = 0; //中断标志
-    GIE = 1;   //全局中断
-    T8NEN = 1; //使能
+    // A 1010 ; B 1011 ; C 1100 ; D 1101 ;  E 1110 ; F 1111
+
+    timer_count = 0;
+    T8NC = 0x0C;         //定时器模式，预分频1:(Fosc/2)/32
+    T8N = T8N_OFFSET;    //赋计数器初值
+    T8NIE = 1;           //打开定时器溢出中断
+    T8NIF = 0;           //清溢出标志位
+    GIE = 1;             //开全局中断
+    T8NEN = 1;           //使能T8N
 }
 void isr_t8n(void)
 {
-    T8N += 6;
-    if (++timer_cnt >= C_1000_MS)
+    T8NIF = 0;                  //清标T8N中断志位
+    T8N += T8N_OFFSET;          //进中断先赋计数器初值
+    timer_count++;
+    if (timer_count >= TIMES_ONE_SECOND)
     {
-        timer_cnt = 0;
-        uart_send_interrupt("-t8n-");
+        is_timer_one_second = 1;
+        timer_count = 0;
+        t8n_test();
     }
-
-    T8NIF = 0;
 }

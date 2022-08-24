@@ -9,7 +9,7 @@
         "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\uart.c",
         "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\adc_ntc.c",
         "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\interrupt_default.c",
-        "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\interrupt_key.c",
+        "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\key.c",
         "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\interrupt_pin.c",
         "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\led.c",
         "c:\\xuchangwei\\c\\MyHRCCStudy\\MyHRCCStudy\\adc_offset.c",
@@ -23,7 +23,7 @@
     "esls.compile.extraArgs": "",
     "files.associations": {
         "adc_ntc.h": "c",
-        "interrupt_key.h": "c",
+        "key.h": "c",
         "uart.h": "c",
         "hic.h": "c",
         "hiint.h": "c",

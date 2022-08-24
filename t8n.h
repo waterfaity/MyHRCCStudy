@@ -11,7 +11,9 @@
 #ifndef __T8N_H__
 #define __T8N_H__
 
-void init_t8n(void);
+extern unsigned int is_timer_one_second;
+
+void t8n_init(void);
 
 void isr_t8n(void);
 
