@@ -13,8 +13,6 @@
 
 void init_key(void)
 {
-
-
     //按键PB6 按键屏蔽:KMSK5
     //高调平点亮
 
@@ -33,6 +31,7 @@ void init_key(void)
     //中断标志清零
     KIF = 0;
 }
+//按键中断 PB6高电位时 判断为按下.
 void isr_key(void)
 {
     KIF = 0;
@@ -40,5 +39,4 @@ void isr_key(void)
     {
         is_interrupt_key = true;
     }
-
 }

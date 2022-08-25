@@ -59,7 +59,7 @@ void init_uart(void)
     UART1SEL = 1;
     PCT1 = 0; //端口设置为输出
     PAT5 = 1; //端口设置为输入
-    PAPU5 = 1;
+    PAPU5 = 1;//上拉电位,防止浮动出现异常数据
 
     //发送器数据格式选择位
     // 0: 8位数据格式
@@ -149,20 +149,24 @@ void init_uart_2(void)
     RX1EN = 1;
     TX1EN = 1;
 }
-
+/**
+ * @brief 接收中断
+ *
+ */
 void isr_uart(void)
 {
+    //从缓冲器读取到rxBuf中
     rxbuf = RX1B;
-    // 空标志位 TRMT1 = 1时 空闲
+
+    //如下未测试 ,直接回发
+    //空标志位 TRMT1 = 1时 空闲
     while (!TRMT1)
         ;
     TX1B = rxbuf;
 }
 
 /**
- * UART 中断
- * 0x18
- * @brief
+ * @brief 串口发送
  *
  */
 
@@ -214,7 +218,11 @@ void uart_send_interrupt_3(char* data)
         TX1B = *(data++);
     }
 }
-
+/**
+ * @brief 发送数字
+ *
+ * @param num
+ */
 void uart_send_num(signed long num)
 {
     char* data = num_to_char(num);
@@ -223,28 +231,5 @@ void uart_send_num(signed long num)
         while (!TRMT1)
             ;
         TX1B = *(data++);
-    }
-}
-
-/**********************************************
-函数名：UART_send(uchar *str,uchar ch,uint value)
-描  述：UART发送函数
-输入值：字符串指针，通道数，ADC转换值
-输出值：无
-返回值：无
-**********************************************/
-void UART_send(unsigned char* str, unsigned char ch, unsigned int value)
-{
-    *(str + 4) = ch + '0';
-    *(str + 16) = value / 1000 + '0';
-    *(str + 17) = value % 1000 / 100 + '0';
-    *(str + 18) = value % 100 / 10 + '0';
-    *(str + 19) = value % 10 + '0';
-
-    while (*str)
-    {
-        while (!TRMT1)
-            ;
-        TX1B = *str++;
     }
 }

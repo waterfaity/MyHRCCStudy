@@ -22,7 +22,7 @@ void handle_one_second(void) {
   if (!is_timer_one_second)  return;
   is_timer_one_second = false;
 
-  //开始adc采样转换 
+  //开始adc采样转换
   ADTRG = 1;
 
 }
