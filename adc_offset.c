@@ -53,7 +53,7 @@ const unsigned long RES_TEMP_CODE[] = // ADC对应温度值 恒温档测试下来在90度
 // #define VDDVREF //宏定义选择VDD作为参考电压，注释本句则选择内部2.048V作为参考电压正端
 //adc采样值
 unsigned int adc_ntc_value;
-double   temperature;
+float   temperature;
 unsigned int offset_value = 0; //保存ADC校准值
 
 
@@ -142,7 +142,7 @@ void init_adc_offset(void)
     PBT3 = 1;
     SMPS = 1; //硬件控制采样，ADTRG=1时启动AD采样转换
 
-    GIE = 1;
+    // GIE = 1;
     ADIE = 1;
 
     //开始转换
@@ -166,9 +166,9 @@ unsigned int get_adc_ntc_value()
  * @brief 计算ntc温度值
  *
  * @param adc_ntc_value
- * @return double
+ * @return float
  */
-double adc_to_temperature()
+float adc_to_temperature()
 {
     //二分比较法下标
     int temp_index = 0;
@@ -220,7 +220,7 @@ double adc_to_temperature()
     long adc_offset = adc_ntc_value - temp_adc;
     long code_offset = RES_TEMP_CODE[end_index] - RES_TEMP_CODE[start_index];
 
-    double temperature_offset = adc_offset / (double)code_offset;
+    float temperature_offset = adc_offset / (float)code_offset;
     temperature = START_TEMP_CODE + temp_index + temperature_offset;
 }
 
@@ -231,7 +231,7 @@ double adc_to_temperature()
 void isr_adc_ntc(void)
 {
     ADIF = 0;
-    is_interrupt_adc = 1;
+    is_interrupt_adc = true;
 }
 
 /**
@@ -240,9 +240,8 @@ void isr_adc_ntc(void)
  */
 void handle_adc_ntc_value(void)
 {
-
     get_adc_ntc_value();
     adc_to_temperature();
     // uart_send_interrupt("adc_trans");
-    uart_send_char(char_add_num("t", temperature));
+    // uart_send_char(char_add_num("温度", temperature));
 }

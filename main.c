@@ -17,13 +17,19 @@ void main() {
     //初始化向量中断
     init_interrupt_vector();
     //初始化T8N
-    t8n_init();
+    init_t8n();
     //初始化串口
     init_uart();
-    //发送日志
-    uart_send("Hello World ! ");
     //初始化adc
     init_adc_offset();
+    //按键
+    init_key();
+    //开启中断
+    GIEL = 1;
+    GIE = 1;
+    
+    //发送日志
+    uart_send("Hello World ! ");
     //亮灯
     // init_led();
     // led_light(0);

@@ -119,6 +119,9 @@
     <Content Include="adc_offset.h">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="boolean.h">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="flash.h">
       <SubType>Content</SubType>
     </Content>

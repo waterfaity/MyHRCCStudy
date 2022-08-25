@@ -10,10 +10,12 @@
  */
 #include "sys.h"
 
-unsigned int is_interrupt_adc = 0;
+bool is_interrupt_adc = false;
+bool is_interrupt_key = false;
 
 /**
- * @brief T8N中断
+ * @brief  IG0 中断
+ * T8N  和 KINT
  *
  */
 void vector_isr_t8n(void)  interrupt_high 0x18
@@ -22,18 +24,40 @@ void vector_isr_t8n(void)  interrupt_high 0x18
     {
         isr_t8n();
     }
+    else if (KIE == 1 && KIF == 1)
+    {
+        //按键中断
+        isr_key();
+    }
 }
 /**
- * @brief adc中断
+ * @brief IG4中断
+ * 包含: adc中断
  *
  */
- void vector_isr_adc(void) interrupt_high 0x8
- {
-     if (ADIE == 1 && ADIF == 1)
-     {
-         isr_adc_ntc();
-     }
- }
+void vector_isr_adc(void) interrupt_high 0x8
+{
+    if (ADIE == 1 && ADIF == 1)
+    {
+        //adc中断
+        isr_adc_ntc();
+    }
+}
+
+/**
+ * @brief IG3 中断
+ * 包含: UART
+ *
+ */
+void vector_isr_uart(void) interrupt_low 0x0014
+{
+    //接收1中断标志位=1 , 接收1中断使能=1
+    if (RX1IE == 1 && RX1IF == 1)
+    {
+        isr_uart();
+    }
+}
+
 
 
 void init_interrupt_vector(void)
@@ -47,7 +71,7 @@ void init_interrupt_vector(void)
 
     //0000 0101
 
-    INTG = 0x46;  //0100 0101        //向量中断模式，中断向量表INTV<1:0>=10
+    INTG = 0x06;  //0100 0101        //向量中断模式，中断向量表INTV<1:0>=10
 
     // GIEL = 1;           //开低优先级中断
     // GIE = 1;            //开全局中断
@@ -59,6 +83,7 @@ void init_interrupt_vector(void)
     //IG5 (000C) SPIINT
     //IG2 (0010) PINTx
     //IG3 (0014) UART
+
     //IG0 (0018) T8NINT 
     //IG1 (001C) T21INT
     //IG6 (0020) I2CINT

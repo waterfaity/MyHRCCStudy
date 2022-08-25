@@ -11,7 +11,7 @@
  */
 #include "sys.h"
 
-//接收缓存
+ //接收缓存
 unsigned char rxbuf;
 
 void init_uart_gpio(void)
@@ -59,6 +59,7 @@ void init_uart(void)
     UART1SEL = 1;
     PCT1 = 0; //端口设置为输出
     PAT5 = 1; //端口设置为输入
+    PAPU5 = 1;
 
     //发送器数据格式选择位
     // 0: 8位数据格式
@@ -88,7 +89,7 @@ void init_uart(void)
     //接收中断使能
     RX1IE = 1;
     //总中断
-    GIE = 1;
+    // GIE = 1;
 
     //发送/接收使能
     RX1EN = 1;
@@ -133,16 +134,16 @@ void init_uart_2(void)
     RX1IE = 1;
 
     //总中断
-    GIE = 1;
+    // GIE = 1;
 
     // INTVEN0 中断模式选择位
     // 0：默认中断模式
     // 1：向量中断模式（芯片配置字 INTVEN1（CFG_WD0<11>）必须为 1）
-    INTVEN0 = 1;
+    // INTVEN0 = 1;
 
     //中断向量表选择位
-    INTV1 = 1;
-    INTV0 = 1;
+    // INTV1 = 1;
+    // INTV0 = 1;
 
     //发送/接收使能
     RX1EN = 1;
@@ -165,7 +166,7 @@ void isr_uart(void)
  *
  */
 
-void uart_send(const char *data)
+void uart_send(const char* data)
 {
     while (*data)
     {
@@ -175,7 +176,7 @@ void uart_send(const char *data)
     }
 }
 
-void uart_send_char(char *data)
+void uart_send_char(char* data)
 {
     while (*data)
     {
@@ -184,17 +185,7 @@ void uart_send_char(char *data)
         TX1B = *(data++);
     }
 }
-void uart_send_interrupt(const char *data)
-{
-    while (*data)
-    {
-        while (!TRMT1)
-            ;
-        TX1B = *(data++);
-    }
-}
-
-void uart_send_interrupt_2(unsigned char *data)
+void uart_send_interrupt(const char* data)
 {
     while (*data)
     {
@@ -204,7 +195,17 @@ void uart_send_interrupt_2(unsigned char *data)
     }
 }
 
-void uart_send_interrupt_3(char *data)
+void uart_send_interrupt_2(unsigned char* data)
+{
+    while (*data)
+    {
+        while (!TRMT1)
+            ;
+        TX1B = *(data++);
+    }
+}
+
+void uart_send_interrupt_3(char* data)
 {
     while (*data)
     {
@@ -216,7 +217,7 @@ void uart_send_interrupt_3(char *data)
 
 void uart_send_num(signed long num)
 {
-    char *data = num_to_char(num);
+    char* data = num_to_char(num);
     while (*data)
     {
         while (!TRMT1)
@@ -232,7 +233,7 @@ void uart_send_num(signed long num)
 输出值：无
 返回值：无
 **********************************************/
-void UART_send(unsigned char *str, unsigned char ch, unsigned int value)
+void UART_send(unsigned char* str, unsigned char ch, unsigned int value)
 {
     *(str + 4) = ch + '0';
     *(str + 16) = value / 1000 + '0';

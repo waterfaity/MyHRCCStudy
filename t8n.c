@@ -12,9 +12,7 @@
  *
  */
 
-#include "t8n.h"
 #include "sys.h"
-#include "timer.h"
 
 
  //0.1ms T8N溢出(中断)一次
@@ -40,28 +38,14 @@ void t8n_test_init() {
 
 
 }
-int state = 0;
 void t8n_test() {
-    //RGB
-    if (state == 0)
-    {
-        state = 1;
-        /* code */
-    }
-    else {
-        state = 0;
-    }
-
-    PA0 = state;
-    PA7 = state;
-    PB7 = state;
-    // uart_send_num(PA0);
-    // uart_send_num(PA7);
-    // uart_send_num(PB7);
+    PA0 = ~PA0;
+    PA7 = PA0;
+    PB7 = PA0;
 }
 
 
-void t8n_init(void)
+void init_t8n(void)
 {
     t8n_test_init();
 
@@ -89,7 +73,7 @@ void t8n_init(void)
     T8N = T8N_OFFSET;    //赋计数器初值
     T8NIE = 1;           //打开定时器溢出中断
     T8NIF = 0;           //清溢出标志位
-    GIE = 1;             //开全局中断
+    // GIE = 1;             //开全局中断
     T8NEN = 1;           //使能T8N
 }
 void isr_t8n(void)
@@ -99,7 +83,7 @@ void isr_t8n(void)
     timer_count++;
     if (timer_count >= TIMES_ONE_SECOND)
     {
-        is_timer_one_second = 1;
+        is_timer_one_second = true;
         timer_count = 0;
         t8n_test();
     }

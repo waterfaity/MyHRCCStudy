@@ -11,6 +11,8 @@
 #include "interrupt_vector.h"
 #include "function.h"
 #include "adc_offset.h"
-#include "t8n.h"
+#include "t8n.h" 
+#include "boolean.h"
+#include "key.h"
 
 

@@ -12,11 +12,19 @@
 
 void handle_data(void) {
 
-    //adc 需要中断处理
+    //adc 中断处理
     if (is_interrupt_adc)
     {
-        is_interrupt_adc = 0;
+        is_interrupt_adc = false;
         handle_adc_ntc_value();
     }
+
+    //key 中断处理 
+    if (is_interrupt_key)
+    {
+        is_interrupt_key = false;
+        uart_send("k");
+    }
+
 
 }

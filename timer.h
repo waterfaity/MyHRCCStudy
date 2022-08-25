@@ -8,17 +8,17 @@
  * @copyright Copyright (c) 2022
  *
  */
-
+ 
+#include "boolean.h"
 #ifndef __TIMER_H__
 #define __TIMER_H__
-
  //1s计次
 #define TIMES_ONE_SECOND 10000
 //1秒标志
-unsigned int is_timer_one_second;
+
+extern bool is_timer_one_second;
 //计数
 unsigned int timer_count;
-
 
 void handle_one_second(void);
 

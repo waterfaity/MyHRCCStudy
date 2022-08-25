@@ -9,16 +9,18 @@
  *
  */
 
-#include "sys.h"
+#include "sys.h" 
 
- /**
-  * @brief 处理1s中断
-  *
-  */
+bool is_timer_one_second = false;
+
+/**
+ * @brief 处理1s中断
+ *
+ */
 void handle_one_second(void) {
 
   if (!is_timer_one_second)  return;
-  is_timer_one_second = 0;
+  is_timer_one_second = false;
 
   //开始adc采样转换 
   ADTRG = 1;

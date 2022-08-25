@@ -9,31 +9,36 @@
  *
  */
 
-#include "sys.h"
-#include "key.h"
+#include "sys.h" 
 
 void init_key(void)
 {
 
+
     //按键PB6 按键屏蔽:KMSK5
+    //高调平点亮
 
     //配置输入
-    PBT0 = 1;
+    PBT6 = 1;
     //使能外部按键中断端口的内部弱上拉电阻
-    PBPU0 = 1;
+    PBPU6 = 1;
     //按键屏蔽
-    KMSK2 = 0;
+    KMSK5 = 1;
     //中断使能
     KIE = 1;
-    //全局中断
-    GIE = 1;
-    //低优先级中断
-    GIEL = 1;
+    // //全局中断
+    // GIE = 1;
+    // //低优先级中断
+    // GIEL = 1; 
     //中断标志清零
     KIF = 0;
 }
 void isr_key(void)
 {
-    uart_send_interrupt("zhongdan le");
     KIF = 0;
+    if (PB6 == 1)
+    {
+        is_interrupt_key = true;
+    }
+
 }

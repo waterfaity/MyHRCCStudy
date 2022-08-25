@@ -8,10 +8,15 @@
  * @copyright Copyright (c) 2022
  *
  */
+
+
+#include "boolean.h"
+
 #ifndef __INTERRUPT_VECTOR_H__
 #define __INTERRUPT_VECTOR_H__
 
-extern unsigned int is_interrupt_adc;
+extern bool is_interrupt_adc;
+extern bool is_interrupt_key;
 /**
  * @brief 初始化向量中断
  *
