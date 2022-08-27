@@ -17,6 +17,7 @@
 
 extern bool is_interrupt_adc;
 extern bool is_interrupt_key;
+extern bool is_interrupt_pin_zero;
 /**
  * @brief 初始化向量中断
  *

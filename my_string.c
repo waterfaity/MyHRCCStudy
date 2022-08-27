@@ -11,7 +11,7 @@
 #include "sys.h"
 #include "my_math.h"
 #include <string.h>
-long char_to_num(char *data)
+long char_to_num(char* data)
 {
     long num = 0;
     return num;
@@ -24,7 +24,7 @@ char temp_double_to_char[20];
  * @param num
  * @return char*
  */
-char *doble_to_char(double num)
+char* doble_to_char(double num)
 {
 
     my_memset(temp_double_to_char, '\0', 20);
@@ -100,17 +100,17 @@ char *doble_to_char(double num)
     }
     //末尾加0
     temp_double_to_char[addr_index++] = '\0';
-    return (char *)temp_double_to_char;
+    return (char*)temp_double_to_char;
 }
 
 char temp_num_to_char[20];
 /**
  * @brief 数字换字符
  *
- * @param num
+ * @param 整形转char
  * @return char*
  */
-char *num_to_char(long num)
+char* num_to_char(long num)
 {
 
     my_memset(temp_num_to_char, '\0', 20);
@@ -149,22 +149,40 @@ char *num_to_char(long num)
     }
     //末尾加0
     temp_num_to_char[addr_index++] = '\0';
-    return (char *)temp_num_to_char;
+    return (char*)temp_num_to_char;
 }
-void *my_memset(void *s, int c, int n)
-{
-    char *xs = s;
 
-    while (n--)
-        *xs++ = c;
-    return s;
+
+/**
+ * @brief memset
+ *
+ * @param str       
+ * @param toChar
+ * @param len
+ * @return void*
+ */
+void* my_memset(void* str, int toChar, int len)
+{
+    char* xs = str;
+
+    while (len--)
+        *xs++ = toChar;
+    return str;
 }
+
 char temp_char_add[20];
-char *char_add_num(const char *str, double num)
+/**
+ * @brief char 追加 整型
+ *
+ * @param str
+ * @param num
+ * @return char*
+ */
+char* char_add_num(const char* str, double num)
 {
 
     my_memset(temp_char_add, '\0', 20);
-    char *doubleChar = doble_to_char(num);
+    char* doubleChar = doble_to_char(num);
     int addr_index = 0;
     while (*str != '\0')
     {
@@ -174,5 +192,5 @@ char *char_add_num(const char *str, double num)
     {
         temp_char_add[addr_index++] = *(doubleChar++);
     }
-    return (char *)temp_char_add;
+    return (char*)temp_char_add;
 }

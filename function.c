@@ -23,8 +23,16 @@ void handle_data(void) {
     if (is_interrupt_key)
     {
         is_interrupt_key = false;
-        uart_send("k");
+        uart_send("isr_key");
     }
+
+    //pin_zero
+    if (is_interrupt_pin_zero)
+    {
+        is_interrupt_pin_zero = false;
+        uart_send("isr_zero");
+    }
+
 
 
 }

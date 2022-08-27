@@ -24,10 +24,15 @@ void main() {
     init_adc_offset();
     //按键
     init_key();
+    //发热丝
+    init_heat();
+	//PIN - 过零
+	init_zero();
+
     //开启中断
     GIEL = 1;
     GIE = 1;
-    
+
     //发送日志
     uart_send("Hello World ! ");
     //亮灯

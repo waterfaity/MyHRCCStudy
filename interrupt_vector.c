@@ -12,11 +12,14 @@
 
 bool is_interrupt_adc = false;
 bool is_interrupt_key = false;
+bool is_interrupt_pin_zero = false;
 
 
 /**
  * @brief IG4中断
  * 包含: adc中断
+ * NTC_ADC :    PB3 (AIN5)
+ * VBUS_ADC:    PB1 (AIN11)
  *
  */
 void vector_isr_adc(void) interrupt_high 0x8
@@ -27,10 +30,23 @@ void vector_isr_adc(void) interrupt_high 0x8
         isr_adc_ntc();
     }
 }
+/**
+ * @brief pin中断
+ * 过零检测:    PA6
+ *
+ */
+void vector_isr_pin(void) interrupt_low 0x10
+{
+    //PINT4 PIE4 PIF4
+    if (PIE4 == 1 && PIF4 == 1)
+    {
+        isr_zero();
+    }
+}
 
 /**
  * @brief IG3 中断
- * 包含: UART
+ * 包含: UART RX:PA5 ,
  *
  */
 void vector_isr_uart(void) interrupt_low 0x0014
@@ -44,7 +60,8 @@ void vector_isr_uart(void) interrupt_low 0x0014
 
 /**
  * @brief  IG0 中断
- * T8N  和 KINT
+ * T8N
+ * 按键中断  KINT PB6
  *
  */
 void vector_isr_t8n(void)  interrupt_high 0x18
@@ -55,6 +72,7 @@ void vector_isr_t8n(void)  interrupt_high 0x18
     }
     else if (KIE == 1 && KIF == 1)
     {
+        //PB6
         //按键中断
         isr_key();
     }

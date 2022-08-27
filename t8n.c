@@ -39,9 +39,15 @@ void t8n_test_init() {
 
 }
 void t8n_test() {
+
+    // PA0 =1;
+    // PA7 = 1;
+    // PB7 = 1;
+
     PA0 = ~PA0;
     PA7 = PA0;
     PB7 = PA0;
+    PA1 = PA0;
 }
 
 
